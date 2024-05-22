@@ -1,0 +1,7 @@
+{{- with .Site.Params }}
+{{- $algolia := dict "indexName" .algolia.indexName "appId" .algolia.appId "apiKey" .algolia.apiKey "hits" .algolia.hits "labels" .algolia.labels }}
+{{- $meili := dict "indexUid" .meili.indexUid "hostUrl" .meili.hostUrl "apiKey" .meili.apiKey }}
+<script>
+  const CONFIG = JSON.parse('{{ dict "root" .RootPath "hostname" .HostName "algolia" $algolia "meili" $meili "fancybox" .Fancybox | jsonify }}')
+</script>
+{{- end }}

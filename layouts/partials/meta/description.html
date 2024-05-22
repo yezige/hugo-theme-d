@@ -1,0 +1,9 @@
+{{ $description := "" }}
+{{ if (eq .Kind "taxonomy") }}
+  {{ $description = (print .Title "," .Site.Params.Description) }}
+{{ else if .IsHome }}
+  {{ $description = .Site.Params.Description }}
+{{ else }}
+  {{ $description = (print .Summary "...") }}
+{{ end }}
+{{ return $description }}

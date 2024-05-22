@@ -1,0 +1,7 @@
+{{ if .Site.Params.Search.Enable }}
+{{ if .Site.Params.Algolia.Enable }}
+{{- partialCached "_third/search/algolia/algolia-search-box.html" . -}}
+{{ else if .Site.Params.Meili.Enable }}
+{{- partialCached "_third/search/meili/meili-search-box.html" . -}}
+{{- end }}
+{{- end }}

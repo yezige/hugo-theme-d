@@ -1,0 +1,53 @@
+.docs-searchbar-js
+  width: 100%
+  .meilisearch-autocomplete
+    width: 100%
+  .dsb-dropdown-menu
+    background: var(--pop-bg-color)
+    margin-top: 6px
+    padding: 5px 30px 30px 30px
+    width: calc( 100% + 92px )
+    margin-left: -46px
+    height: 500px
+    overflow: auto
+    border-bottom-left-radius: 5px
+    border-bottom-right-radius: 5px
+    border-top: 1px solid var(--pop-border-color)
+    @include mobile
+      padding: 5px 15px 15px 15px
+
+.search-header
+  border-radius: 5px
+
+.search-popup
+  height: unset
+  background: unset
+
+.dsb-suggestion
+  padding: 8px
+  border-bottom: 1px dashed var(--pop-border-color)
+  padding-bottom: calc( 1.5rem + 8px )
+  position: relative
+  .docs-searchbar-suggestion--highlight
+    color: var(--btn-bg-color)
+
+  .docs-searchbar-suggestion--subcategory-column,
+  .docs-searchbar-suggestion--subcategory-inline
+    display: none
+  .docs-searchbar-suggestion--text
+    font-size: .8rem
+    color: var(--text-nonhigh-color)
+
+.docs-searchbar-footer
+  margin-top: 10px
+
+.docs-searchbar-suggestion--category-header
+  font-size: .8rem
+  color: var(--text-nonhigh-color)
+  position: absolute
+  bottom: 8px
+  left: 10px
+  &::before
+    font-family: "Font Awesome 5 Free"
+    font-weight: 900
+    content: "\f02c"

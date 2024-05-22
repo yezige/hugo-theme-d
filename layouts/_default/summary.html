@@ -1,0 +1,9 @@
+{{- if .Params.Description }}
+<p>{{ .Params.Description }}</p>
+{{ else if .IsNode }}
+    {{ range first 1 .Pages }}
+<p>{{ .Summary }}...</p>
+    {{ end }}
+{{ else }}
+<p>{{ .Summary }}...</p>
+{{- end }}

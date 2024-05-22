@@ -1,0 +1,171 @@
+# Theme config.
+# Site
+languageCode = 'zh-CN'
+title = 'D Demo'
+theme = 'D'
+baseURL = 'https://www.example.com/'
+ignoreFiles = ["content/test/*"]
+layoutDir = "layouts"
+contentDir = "content"
+staticDir = "static"
+themesDir = "themes"
+disableRSS = false
+disableSitemap = false
+paginate = 20
+paginatePath = "page"
+# 是否有中文，影响裁剪概括
+hasCJKLanguage = true
+summaryLength = 88
+defaultContentLanguage = "zh"
+timeout = "600s"
+enableRobotsTXT = true
+# 是否禁止URL Path转小写
+disablePathToLower = true
+
+[taxonomies]
+category = "categories"
+tag = "tags"
+
+# 换行
+[markup]
+defaultMarkdownHandler = 'goldmark'
+[markup.goldmark.renderer]
+hardWraps = true
+
+[menu]
+[[menu.main]]
+name = '首页'
+pageRef = '/'
+weight = 10
+[[menu.main]]
+name = '标签'
+pageRef = '/tags'
+weight = 40
+[[menu.main]]
+name = '关于'
+pageRef = '/about'
+weight = 50
+
+[params]
+env = "production"
+authorName = ""
+hostName = "example.com"
+rootPath = "/"
+logo = ""
+googleAnalytics = "G-"
+baiduAnalytics = ""
+googleSiteVerification = ""
+baiduSiteVerification = ""
+googleAdsense = "ca-pub-"
+stylesheets = []
+scripts = ["/js/d.js"]
+VendorsToEnable = [
+  "fancybox",
+  "lazysizes",
+  "logocanvas",
+  "busuanzi",
+  "nprogress",
+]
+busuanziCount = true
+description = ''
+commentEnable = true
+fancybox = true
+
+[params.disqus]
+enable = true
+forum = ""
+site = ""
+api = ""
+mode = 1
+badge = ""
+timeout = 3000
+# disqusapi.swig文件使用
+apihost = ""
+# 不使用disqus自带的count方式，防止引disqus的js时404
+count = true
+emojiPath = "https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/"
+
+[params.twitter]
+user = ""
+image = ""
+
+[params.search]
+enable = true
+
+[params.algolia]
+enable = false
+appId = ""
+apiKey = ""
+adminApiKey = ""
+chunkSize = 5000
+indexName = ""
+fields = ["title", "summary", "date", "permalink"]
+[params.algolia.hits]
+per_page = 10
+[params.algolia.labels]
+input_placeholder = "输入以进行搜索"
+hits_empty = "未找到任何记录: ${query}"
+hits_stats = "记录数：${hits} 用时：${time} ms"
+
+[params.meili]
+enable = false
+hostUrl = ""
+apiKey = ""
+indexUid = ""
+fields = [
+  "title",
+  "summary",
+  "date",
+  "url",
+  "type",
+  "content",
+  "hierarchy_lvl0",
+  "hierarchy_lvl1",
+  "hierarchy_lvl2",
+  "hierarchy_lvl3",
+]
+
+
+[params.vendors]
+anime = "//cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
+fontawesome = "//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+mathjax = "//cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.1/es5/tex-mml-chtml.min.js"
+pjax = "//cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js"
+jquery = "//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+fancybox = "//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"
+fancybox_css = "//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css"
+mediumzoom = "//cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js"
+lazysizes = "//cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"
+pangu = "//cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js"
+quicklink = "//cdnjs.cloudflare.com/ajax/libs/quicklink/2.2.0/quicklink.umd.min.js"
+algolia_search = "//cdnjs.cloudflare.com/ajax/libs/algoliasearch/4.13.1/algoliasearch-lite.umd.min.js"
+instant_search = "//cdnjs.cloudflare.com/ajax/libs/instantsearch.js/4.41.0/instantsearch.production.min.js"
+docs_searchbar = "//unpkg.com/docs-searchbar.js@2.5.0/dist/cdn/docs-searchbar.min.js"
+nprogress_css = "//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css"
+nprogress = "//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"
+mermaid = "//cdnjs.cloudflare.com/ajax/libs/mermaid/9.1.1/mermaid.min.js"
+velocity = "//cdnjs.cloudflare.com/ajax/libs/velocity/2.0.6/velocity.min.js"
+velocity_ui = "//cdnjs.cloudflare.com/ajax/libs/velocity/2.0.6/velocity.ui.min.js"
+pace = "//cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"
+pace_css = "//cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.min.css"
+highlightjs = "//cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.min.css"
+busuanzi = "//cdnjs.cloudflare.com/ajax/libs/busuanzi/2.3.0/bsz.pure.mini.min.js"
+logocanvas = "/js/canvas.js"
+
+[languages.zh]
+languageCode = "zh-cn"
+
+[outputs]
+home = ["HTML", "RSS", "Meili"]
+
+# [outputFormats.Algolia]
+# baseName = "search"
+# isPlainText = true
+# mediaType = "application/json"
+# notAlternative = true
+
+[outputFormats.Meili]
+baseName = "search"
+isPlainText = true
+mediaType = "application/json"
+notAlternative = true

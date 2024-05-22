@@ -1,0 +1,33 @@
+[site]
+[site.views]
+other = "Total views"
+
+[symbol]
+[symbol.comma]
+other = "，"
+[symbol.period]
+other = "。"
+[symbol.colon]
+other = "："
+
+[post]
+[post.posted]
+other = "发布于"
+[post.edited]
+other = "更新于"
+[post.in]
+other = "分类于"
+[post.views]
+other = "浏览量"
+[post.readMore]
+other = "阅读全文"
+[post.readingTime]
+one = "阅读需 1 分钟"
+other = "阅读需 {{ .Count }} 分钟"
+[post.wordCount]
+one = "1 字"
+other = "{{ .Count }} 字"
+[post.prev]
+other = "上一篇"
+[post.next]
+other = "下一篇"

@@ -1,0 +1,590 @@
+@import "_common/variable"
+@import "mask"
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;500&display=swap')
+
+*
+  box-sizing: border-box
+
+html
+  font-size: 16px
+
+body
+  margin: 0
+  padding: 0
+  line-height: 1.8
+  font-weight: 300
+  font-size: 1rem
+  font-family: 'Roboto', sans-serif
+  scroll-behavior: smooth
+
+.btn
+  background-color: var(--btn-bg-color)
+  color: var(--btn-color)
+  padding: 8px 30px
+  border-radius: 60px
+  cursor: pointer
+  filter: drop-shadow(0px 3px 9px var(--btn-bg-color))
+  letter-spacing: 1px
+  transition: 0.2s
+  transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1)
+  font-size: 0.875rem
+  &:hover
+    letter-spacing: 3px
+    transform: unset
+  &.min
+    padding: 5px 15px
+    font-size: .75rem
+    background-color: var(--btn-min-bg-color)
+    filter: drop-shadow(0px 3px 9px var(--btn-min-bg-color))
+
+a
+  display: inline-block
+  color: var(--link-color)
+  text-decoration: none
+  transition: 0.3s
+  transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1)
+  &.transform:hover
+    transform: translateY(-3px)
+
+.text-color
+  a
+    color: var(--text-color)
+
+pre, code
+  font-family: 'Source Code Pro', sans-serif
+  background-color: var(--code-bg-color)
+
+code
+  font-size: 0.9rem
+  padding: 5px 8px
+  border-radius: 3px
+
+pre
+  padding: 10px 12px
+  border-radius: 5px
+  overflow: auto
+
+blockquote
+  border-left: 4px solid var(--code-bg-color)
+  padding: 0 15px
+  margin: 0
+
+p br
+  content: " "
+  display: block
+  margin-top: 1rem
+
+h1
+  font-size: 2.2rem
+h2
+  font-size: 1.5rem
+h3
+  font-size: 1.3rem
+h4
+  font-size: 1.2rem
+
+.hljs
+  background-color: var(--code-bg-color)
+
+.ellipsis_2
+  overflow-wrap: break-word
+  hyphens: auto
+  overflow: hidden
+  display: -webkit-box
+  -webkit-line-clamp: 2
+  -webkit-box-orient: vertical
+
+.ellipsis_3
+  overflow-wrap: break-word
+  hyphens: auto
+  overflow: hidden
+  display: -webkit-box
+  -webkit-line-clamp: 3
+  -webkit-box-orient: vertical
+
+figure
+  padding: 0
+  margin: 0
+
+a.fancybox
+  margin: 1.25rem 0
+  text-align: center
+  p.image-caption
+    text-align: center
+    font-size: .8rem
+    color: var(--text-color)
+    line-height: 1.8
+    margin: 0
+  &:not(.inline)
+    display: block
+
+table
+  border-collapse: collapse
+  border-spacing: 0
+  margin: 0 0 20px 0
+  width: 100%
+  td,th
+    padding: 8px
+    vertical-align: middle
+    border: 1px solid var(--code-bg-color)
+  th
+    border-bottom: 3px solid var(--code-bg-color)
+
+textarea:focus, input:focus
+  outline: none
+
+.bold
+  font-weight: 600 !important
+
+.tips
+  display: inline-flex
+  align-items: center
+  font-size: 0.78rem
+  font-weight: 400
+  color: var(--text-nonhigh-color)
+
+.mg_l_15
+  margin-left: 15px
+
+.mg_r_15
+  margin-right: 15px
+
+.mg_b_15
+  margin-bottom: 15px
+
+.p_10_0
+  padding: 10px 0
+
+.center_box
+  display: flex
+  justify-content: center
+  align-items: center
+
+.video-container
+  border-radius: 5px
+  margin-bottom: 20px
+  overflow: hidden
+  padding-top: 75%
+  position: relative
+  width: 100%
+  iframe, object, embed
+    left: 0
+    margin: 0
+    position: absolute
+    top: 0
+    width: 100%
+    height: 100%
+
+img.lazyload:not([src])
+  visibility: hidden
+
+.space::before
+  content: ' '
+  margin: 0 1px
+
+.background
+  background: var(--body-bg-color)
+  height: 100%
+  width: 100%
+  position: fixed
+  top: 0
+  z-index: -1
+
+.showbody
+  color: var(--text-color)
+  width: 100%
+  min-width: 320px
+  header
+    position: fixed
+    top: 0
+    z-index: 1
+    width: 100%
+    transition: 0.5s
+    transition-timing-function: ease-in-out
+    &.active
+      height: auto
+      .header
+        box-shadow: unset
+        border-radius: unset
+    .header
+      padding: 0 3rem
+      height: 5rem
+      display: flex
+      justify-content: space-between
+      align-items: center
+      position: relative
+      z-index: 2
+      background: var(--menu-bg-color)
+      box-shadow: 0 8px 32px 0 var(--shadow-color)
+      transition-timing-function: ease-in-out
+      backdrop-filter: blur(4px)
+      -webkit-backdrop-filter: blur(4px)
+      border-bottom: 1px solid var(--border-color)
+      border-radius: 0 0 10px 10px
+      .toggle
+        cursor: pointer
+        width: 32px
+        height: 32px
+        background-image: url(../images/menu.svg)
+        background-size: 32px
+        background-repeat: no-repeat
+        transition: 0.5s
+        transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1)
+        &.active
+          background-image: url(../images/close.svg)
+      .logo
+        margin-left: .5rem
+        display: flex
+        justify-content: center
+        font-weight: 400
+        font-family: Roboto
+      .space
+        flex: 1
+      .explore
+        text-transform: uppercase
+    .menu
+      position: relative
+      z-index: 1
+      height: 5rem
+      padding: 0 3rem
+      margin-top: -13rem
+      width: 100%
+      display: flex
+      align-items: center
+      transition: 0.5s
+      transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1)
+      background: var(--menu-bg-color)
+      box-shadow: 0 8px 32px 0 var(--shadow-color)
+      transition-timing-function: ease-in-out
+      backdrop-filter: blur(4px)
+      -webkit-backdrop-filter: blur(4px)
+      border-bottom: 1px solid var(--border-color)
+      border-radius: 0 0 10px 10px
+      @include mobile
+        margin-top: -18rem
+      &.active
+        margin-top: 0
+      a
+        color: var(--text-color)
+      a.active
+        color: var(--text-active-color)
+        font-weight: 500
+      a+a
+        margin-left: 2.5rem
+
+  footer
+    background: var(--footer-bg-color)
+    padding: 30px 50px 10px 50px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    text-align: center
+    line-height: 1.6
+    letter-spacing: 2px
+    font-size: .875rem
+    > *
+      margin-top: 20px
+    ul
+      padding-left: 0
+    .powered
+      display: flex
+      justify-content: center
+      flex-direction: column
+      > *
+        margin: 8px 0
+    .social
+      display: flex
+      justify-content: center
+      align-items: center
+      li
+        list-style: none
+        img
+          width: 20px
+          height: 20px
+      li+li
+          margin-left: .8rem
+    .other_menu
+      display: flex
+      justify-content: space-between
+      align-items: center
+      ul
+        flex-grow: 1
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-wrap: wrap
+        li
+          list-style: none
+        li + li
+          margin-left: .8rem
+    .license
+      font-size: .6rem
+      p
+        justify-content: left
+  main
+    padding-top: 7rem
+    padding-bottom: 5rem
+    width: 100%
+    @include mobile
+      padding-top: 6rem
+    #content
+      margin-left: auto
+      margin-right: auto
+      background: var(--content-bg-color)
+      min-width: 750px
+      max-width: 1000px
+      border-radius: 10px
+      &::before
+        content: ' '
+        display: block
+        // height: 5rem;
+        pointer-events: none
+        visibility: hidden
+      .comments
+        padding: 3.125rem
+        padding-bottom: 0
+      img
+        margin-top: 1.25rem
+        margin-bottom: 1.25rem
+        &:not(.inline)
+          display: block
+
+.content-box
+  padding: 2rem
+  @include mobile
+    padding-top: 1rem
+  a
+    color: var(--text-title-color)
+  .content-box-item
+    &+.content-box-item
+      margin-top: 40px
+    .post-title
+      line-height: .7
+      a
+        line-height: 1.5
+        overflow: hidden
+        white-space: nowrap
+        text-overflow: ellipsis
+        width: -webkit-fill-available
+    .post-body
+      line-height: 2
+      letter-spacing: 1.5px
+      color: var(--text-color)
+      p
+        margin: 0
+    .post-info
+      display: flex
+      justify-content: space-between
+      align-items: center
+      .post-meta
+        flex-grow: 1
+      .post-button a
+        min-width: 95px
+
+.post-meta
+  font-size: .75rem
+  color: var(--text-nonhigh-color)
+  .post-meta-item::after
+    content: ' '
+    margin: 0 0.5em
+  .tag-item+.tag-item::before
+    content: ', '
+
+.pagination
+  display: flex
+  justify-content: center
+  align-items: center
+  margin-top: 20px
+  padding: 0
+  .page-item
+    background-color: var(--icon-bg-color)
+    filter: drop-shadow(0px 3px 9px var(--icon-bg-color))
+    border-radius: 50%
+    display: inline-block
+    width: 35px
+    height: 35px
+    text-align: center
+    vertical-align: middle
+    line-height: 35px
+    font-size: .8rem
+    &+.page-item
+      margin-left: 10px
+    a
+      display: flex
+      justify-content: center
+      align-items: center
+      span
+        margin-top: -2px
+    &.active a
+      color: var(--text-color)
+
+  .extend
+    content: " "
+    border-radius: 50%
+    width: 35px
+    height: 35px
+    filter: drop-shadow(0px 3px 9px var(--icon-bg-color))
+    &.prev
+      margin-right: 10px
+      background: var(--image-bg-move-left) no-repeat center/25px 25px
+      background-color: var(--icon-bg-color)
+    &.next
+      margin-left: 10px
+      background: var(--image-bg-move-right) no-repeat center/25px 25px
+      background-color: var(--icon-bg-color)
+
+.search-btn
+  padding: 10px
+  border-radius: 50%
+  width: 41px
+  height: 41px
+  cursor: pointer
+  margin-right: 16px
+  text-align: center
+  background: var(--image-bg-search) no-repeat center/44px 44px
+  background-color: var(--btn-bg-color)
+  filter: drop-shadow(0px 3px 9px var(--btn-bg-color))
+
+.search-pop-overlay
+  display: none
+  &.search-active
+    display: block
+
+.bazong
+  display: flex
+  margin-right: 16px
+  a
+    height: 35px
+  img
+    height: 35px
+
+article
+  padding: 0 50px
+  line-height: 2
+  letter-spacing: 2px
+  @include mobile
+    font-size: 1.2rem
+  .title
+    color: var(--text-title-color)
+  .content
+    text-align: left
+    &.fancybox
+      text-align: center
+    > *
+      margin-bottom: 1.25rem
+      display: block
+    .right
+      text-align: right
+      margin-left: auto
+    .center
+      text-align: center
+    .inline
+      display: inline-block
+  .post-meta
+    display: flex
+    flex-wrap: wrap
+  .prev-next-box
+    padding: 1rem 0
+    display: flex
+    justify-content: space-between
+    align-items: center
+  h1
+    text-align: center
+    font-weight: 300
+  ul li
+    line-height: 2.3
+  img
+    filter: drop-shadow(0px 4px 4px var(--shadow-color))
+    border-radius: 5px
+    &:not([width])
+      width: 100%
+
+.light-dark-switch
+  position: fixed
+  right: 30px
+  bottom: 30px
+  transition: 0.5s
+  transition-timing-function: ease-in-out
+  z-index: 1
+  .switch-box
+    display: flex
+    flex-direction: column
+    &.active .switch-item
+      display: block
+    &.active .switch-item .switch-item-text
+      display: inline-block
+    .switch-item
+      font-size: 1rem
+      line-height: 1
+      border-radius: 20px
+      padding: 10px
+      cursor: pointer
+      display: none
+      &.active
+        display: block
+        background-color: var(--btn-bg-color)
+        filter: drop-shadow(0 3px 9px var(--btn-bg-color))
+      &:hover
+        background-color: var(--btn-bg-color)
+        filter: drop-shadow(0 3px 9px var(--btn-bg-color))
+      .switch-item-icon
+        width: 1rem
+        display: inline-flex
+        justify-content: center
+        align-items: center
+      .switch-item-text
+        display: none
+    .switch-item+.switch-item
+      margin-top: 3px
+
+@include mobile
+  html
+    font-size: 16px
+  .btn
+    padding: 5px 20px
+  .search-btn
+    width: 35px
+    height: 35px
+  .showbody
+    header
+      height: 4rem
+      .header
+        padding: 0 20px
+        height: 4rem
+        .logo
+          display: none
+      .menu
+        height: auto
+        padding: 10px 20px
+        flex-direction: column
+        align-items: center
+        a
+          padding: 10px
+        a+a
+          margin-left: 0
+    main
+      #content
+        min-width: calc(100vw - 20px)
+        margin: 0 10px
+  article
+    padding: 0 20px
+    .title
+      font-size: 1.8rem
+    img
+      width: 100%
+    .content
+      a.fancybox
+        text-align: center
+
+@include desktop-large
+  html
+    font-size: 17.6px
+@include desktop-largest
+  html
+    font-size: 28.8px
+  .showbody
+    main
+      #content
+        max-width: 2000px

@@ -1,0 +1,10 @@
+{{ define "main" }}
+{{ $paginator := .Paginate .Pages }}
+<div id="recent-posts" class="content-box">
+  {{ range $paginator.Pages }} {{ .Render "row" }} {{ end}}
+  <div style="margin-top: 40px;">
+    {{ partialCached "_third/analytics/adsbygoogle.html" (index .Site.Params.AdsConfig "list") }}
+  </div>
+</div>
+{{- template "_internal/pagination.html" (dict "page" . "format" "terse") -}}
+{{ end }}

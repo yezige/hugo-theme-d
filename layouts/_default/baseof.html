@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="{{ site.LanguageCode | default site.Language.Lang }}" {{- with site.Language.LanguageDirection }} dir="{{ . }}" {{- end }}>
+<head>
+{{ partial "meta/meta.html" . }}
+{{ partialCached "head.html" . }}
+</head>
+<body>
+<div class="background"></div>
+<section class="showbody">
+  <header>
+  {{- partial "header.html" . -}}
+  </header>
+  {{ partialCached "_third/search/search-box.html" . }}
+  <main class="main">
+    <div id="content">
+    {{- block "main" . }}{{- end }}
+    {{- partial "_include/comment.html" . }}
+    </div>
+  </main>
+  <footer>
+  {{- partialCached "footer.html" . }}
+  </footer>
+</section>
+{{- partialCached "foot.html" . }}
+</body>
+</html>

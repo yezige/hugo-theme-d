@@ -1,0 +1,9 @@
+{{ define "main" }}
+{{ $paginator := .Paginate (where (where .Site.Pages "Type" "tags") "Kind" "term") }}
+<div id="recent-posts" class="content-box">
+  {{ range $paginator.Pages }}
+  {{ .Render "row" }}
+  {{ end }}
+</div>
+{{- template "_internal/pagination.html" (dict "page" . "format" "terse") -}}
+{{ end }}

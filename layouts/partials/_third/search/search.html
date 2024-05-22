@@ -1,0 +1,48 @@
+{{ if .Site.Params.Search.Enable }}
+
+{{ if .Site.Params.Algolia.Enable }}
+{{- partialCached "_third/search/algolia/algolia-search.html" . -}}
+{{ else if .Site.Params.Meili.Enable }}
+{{- partialCached "_third/search/meili/meili-search.html" . -}}
+{{- end }}
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Handle and trigger popup window
+  document.querySelectorAll('.search-btn').forEach((element) => {
+    element.addEventListener('click', () => {
+      document.body.style.overflow = 'hidden'
+      document
+        .querySelector('.search-pop-overlay')
+        .classList.add('search-active')
+      document.querySelector('.search-input').focus()
+    })
+  })
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.body.style.overflow = ''
+    document
+      .querySelector('.search-pop-overlay')
+      .classList.remove('search-active')
+  }
+
+  document
+    .querySelector('.search-pop-overlay')
+    .addEventListener('click', (event) => {
+      if (event.target === document.querySelector('.search-pop-overlay')) {
+        onPopupClose()
+      }
+    })
+  document
+    .querySelector('.popup-btn-close')
+    .addEventListener('click', onPopupClose)
+  window.addEventListener('pjax:success', onPopupClose)
+  window.addEventListener('keyup', (event) => {
+    if (event.key === 'Escape') {
+      onPopupClose()
+    }
+  })
+})
+</script>
+{{ end }}

@@ -1,0 +1,26 @@
+{{- with .Site.Params.Disqus }}
+{{ if .Enable }}
+<link rel="preload" href="{{ .Apihost }}/dist/iDisqus.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ .Apihost }}/dist/iDisqus.min.css"></noscript>
+<script src="{{ .Apihost }}/dist/iDisqus.min.js" defer></script>
+<script defer>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (location.hostname === '{{ site.Params.HostName }}') {
+      var disq = new iDisqus('comments', {
+        forum: '{{ .Forum }}',
+        site: '{{ .Site }}',
+        api: '{{ .Api }}',
+        mode: '{{ .Mode }}',
+        badge: '{{ .Badge }}',
+        timeout: '{{ .Timeout }}',
+        init: true,
+        url: location.pathname.replace('index.html',''),
+        emojiPreview: true,
+        emojiPath: '{{ .EmojiPath }}'
+      });
+      disq.count();
+    }
+  })
+</script>
+{{ end }}
+{{ end }}

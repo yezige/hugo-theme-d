@@ -1,0 +1,113 @@
+{{ define "main" }}
+{{- if .Params.Password }}
+<script>const password = "{{ md5 .Params.Password }}"</script>
+{{ end }}
+<article id="post">
+  <h1 class="title">{{ .Title }}</h1>
+  <div class="post-meta">
+    {{- $date_diff := (ne (time .Date) (time .Lastmod)) }}
+    {{- $dateFormat := "2006-01-02" }}
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="fa-solid fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">{{ i18n "post.posted" }}</span>
+      <time title="{{- .Date.Format $dateFormat -}}" itemprop="dateCreated datePublished" datetime="{{ .Date }}">{{- .Date.Format $dateFormat -}}</time>
+    </span>
+    {{- if (and .Lastmod $date_diff) }}
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="fa-solid fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">{{ i18n "post.edited" }}</span>
+      <time title="{{- .Lastmod.Format $dateFormat -}}" itemprop="dateCreated datePublished" datetime="{{ .Lastmod }}">{{- .Lastmod.Format $dateFormat -}}</time>
+    </span>
+    {{ end }}
+    {{- if .Params.Categories }}
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="fa-solid fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">{{ i18n "post.in" }}</span>
+      {{ with .GetTerms "categories" }}
+      {{- range . }}
+      <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="{{ .RelPermalink }}" itemprop="url" rel="index"> <span itemprop="name">{{ .LinkTitle }}</span></a>
+      </span>
+      {{ end }}
+      {{ end }}
+    </span>
+    {{ end }}
+    {{- with .ReadingTime }}
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="fa-brands fa-readme"></i>
+      </span>
+      <span class="post-meta-item-text">{{ i18n "post.readingTime" . }}</span>
+    </span>
+    {{ end }}
+    {{- with .FuzzyWordCount }}
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="fa-solid fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">{{ i18n "post.wordCount" . }}</span>
+    </span>
+    {{ end }}
+    {{- if .Site.Params.busuanziCount }}
+    <span class="post-meta-item" title="{{ i18n "post.views" }}" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa-solid fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">{{ i18n "post.views" }}</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    {{- end }}
+    {{- with .GetTerms "tags" }}
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="fa-solid fa-tags"></i>
+      </span>
+      {{- range . }}
+      <span class="post-meta-item-text tag-item"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></span>
+      {{- end }}
+    </span>
+    {{- end }}
+  </div>
+  <div class="content">
+    <div style="margin: 1em 0;">
+      {{ partialCached "_third/analytics/adsbygoogle.html" (index .Site.Params.AdsConfig "detail") }}
+    </div>
+    {{- with .GetTerms "tags" }}
+    {{- range . }}
+    <p>所属系列：<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></p>
+    {{ end }}
+    {{ end }}
+    {{ .Content }}
+  </div>
+  <div class="prev-next-box">
+    <div>
+    {{ $term := index site.Taxonomies.tags (anchorize (index .Params.Tags 0)) }}
+    {{- with $term.Next . }}
+    <span>{{ i18n "post.prev" }}</span>
+    <a class="next" href="{{ .Permalink }}"> {{ .Title }}</a>
+    {{- end }}
+    </div>
+    <div>
+    {{- with $term.Prev . }}
+    <span>{{ i18n "post.next" }}</span>
+    <a class="previous" href="{{ .Permalink }}"> {{ .Title }}</a>
+    {{- end }}
+    </div>
+  </div>
+</article>
+<script type="module">
+  import {
+    setReadProgress
+  } from '/js/util.js'
+
+  document.addEventListener('DOMContentLoaded', function () {
+    setReadProgress()
+  })
+</script>
+{{ end}}

@@ -1,0 +1,17 @@
+{{- with site.Params.Vendors.jquery }}
+<script src="{{ . }}"></script>
+{{- end }}
+
+{{- with .Site.Params.VendorsToEnable }}
+{{- /* VendorsToEnable list from hugo.toml */ -}}
+{{- range . }}
+
+{{- $css := (print . "_css") }}
+{{- with index site.Params.Vendors $css }}
+<link rel="preload" href="{{ . }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ . }}"></noscript>
+{{- end }}
+
+<script src="{{ index site.Params.Vendors . }}" defer></script>
+{{- end }}
+{{- end }}

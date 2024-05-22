@@ -1,0 +1,16 @@
+<div class="{{ .Class | default "" }}">
+  <ins
+    class="adsbygoogle"
+    style="display:block;width: inherit; height: inherit;"
+    data-ad-format="{{ .Format | default "auto" }}"
+    data-ad-layout-key="{{ .LayoutKey | default "" }}"
+    data-ad-client="{{ .Client }}"
+    data-ad-slot="{{ .Slot }}"
+    data-full-width-responsive="{{ .WidthResponsive | default "true" }}"
+  ></ins>
+  <script>
+    if (location.hostname === '{{ site.Params.HostName }}') {
+      (adsbygoogle = window.adsbygoogle || []).push({})
+    }
+  </script>
+</div>

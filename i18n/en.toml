@@ -1,0 +1,33 @@
+[site]
+[site.views]
+other = "Total views"
+
+[symbol]
+[symbol.comma]
+other = ", "
+[symbol.period]
+other = ". "
+[symbol.colon]
+other = ": "
+
+[post]
+[post.posted]
+other = "Posted"
+[post.edited]
+other = "Edited"
+[post.in]
+other = "In"
+[post.views]
+other = "Views"
+[post.readMore]
+other = "Read More"
+[post.readingTime]
+one = "One minute read"
+other = "{{ .Count }} Minutes read"
+[post.wordCount]
+one = "One word"
+other = "{{ .Count }} Words"
+[post.prev]
+other = "Prev"
+[post.next]
+other = "Next"

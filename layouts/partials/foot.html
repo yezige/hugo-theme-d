@@ -1,0 +1,12 @@
+{{- partialCached "_third/analytics/index.html" . }}
+
+{{- with .Site.Params.Vendors.fontawesome }}
+<link rel="preload" href="{{ . }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+  <link rel="stylesheet" href="{{ . }}">
+</noscript>
+{{- end }}
+
+{{- partialCached "_include/vendors.html" . }}
+
+{{- partialCached "_third/disqus.html" . -}}

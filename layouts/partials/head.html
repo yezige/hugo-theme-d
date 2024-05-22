@@ -1,0 +1,23 @@
+{{ $js_d := resources.Get "js/d.js" | minify | fingerprint }}
+{{ $js_util := resources.Get "js/util.js" | minify | fingerprint }}
+<script type="importmap">
+  {
+    "imports": {
+      "/js/d.js": "{{ $js_d.RelPermalink }}",
+      "/js/util.js": "{{ $js_util.RelPermalink }}"
+    }
+  }
+</script>
+<script type="module" src="{{ $js_d.RelPermalink }}" integrity="{{ $js_d.Data.Integrity }}" crossorigin="anonymous"
+  defer></script>
+
+{{- $options := dict "transpiler" "libsass" "targetPath" "css/d.css" }}
+{{- with resources.Get "sass/d.sass" | toCSS $options | minify | fingerprint }}
+<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+{{- end }}
+
+{{- partialCached "_third/search/search.html" . -}}
+
+{{- partialCached "_third/light-dark-switch.html" . }}
+
+{{- partialCached "_include/config-js.html" . -}}

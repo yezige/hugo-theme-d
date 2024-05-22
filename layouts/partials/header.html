@@ -1,0 +1,12 @@
+<div class="header">
+  <div class="toggle"></div>
+  <a href="{{ site.BaseURL }}">
+    <h2 class="logo" style="font-family: Roboto;">{{ .Site.Params.Logo }}</h2>
+  </a>
+  <div class="space"></div>
+  {{- if .Site.Params.Search.Enable }}
+  <div class="search-btn"></div>
+  {{ end -}}
+  <a class="random btn" href="/random" target="_self">随机一篇</a>
+</div>
+{{ partial "_include/menu.html" . }}

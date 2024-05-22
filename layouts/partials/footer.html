@@ -1,0 +1,21 @@
+<div class="powered">
+  <p class="author">Author <a class="transform" href="javascript:;" title="{{ .Site.Params.AuthorName }}">{{ .Site.Params.AuthorName }}</a></p>
+  <p class="designed">Web & Icons designed by Figma.</p>
+  <p>
+    Powered By <a class="transform" href="//gohugo.io" title="Hugo">Hugo</a> | <a class="transform" href="javascript:;" title="Theme D">Theme D</a>
+  </p>
+  <ul class="social">
+    <li><a class="transform" href="mailto:a@example.com" alt="Email" title="Email"><img src="/images/Email.svg" srcset=""></a></li>
+  </ul>
+  {{- if .Site.Params.busuanziCount }}
+  <p id="busuanzi_container_site_pv" style="display: none;">
+    {{ i18n "site.views" }} <span id="busuanzi_value_site_pv"></span>
+  </p>
+  {{- end }}
+</div>
+<nav class="other_menu">
+</nav>
+<div class="license">
+  <p>©<span class="space"></span>2022<span class="space"></span>{{ .Site.Params.HostName}}<span class="space"></span><span class="with-love"><i class="fa-solid fa-heart"></i></span><span class="space"></span>{{ .Site.Params.AuthorName }}<span class="space"></span><span class="vertical_line">|</span><span class="space"></span>All rights reserved.</p>
+</div>
+

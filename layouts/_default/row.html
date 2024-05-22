@@ -1,0 +1,51 @@
+<div class="recent-post-item content-box-item" data-type="{{ .Type }}" data-kind="{{ .Kind }}" data-categories="{{ .CurrentSection }}">
+  <h2 class="post-title">
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+  </h2>
+  <a href="{{ .RelPermalink }}">
+    <div class="post-body ellipsis_3">
+      {{ .Render "summary" }}
+    </div>
+  </a>
+  <div class="post-info">
+    <div class="post-meta">
+      {{- $date_diff := (ne (time .Date) (time .Lastmod)) }}
+      {{- $dateFormat := "2006-01-02" }}
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="fa-solid fa-calendar"></i>
+        </span>
+        <span class="post-meta-item-text">{{ i18n "post.posted" }}</span>
+        <time title="{{ .Date.Format $dateFormat }}" itemprop="dateCreated datePublished" datetime="{{ .Date }}">{{ .Date.Format $dateFormat }}</time>
+      </span>
+      {{- if (and .Lastmod $date_diff) }}
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="fa-solid fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">{{ i18n "post.edited" }}</span>
+        <time title="{{ .Lastmod.Format $dateFormat }}" itemprop="dateCreated datePublished" datetime="{{ .Lastmod }}">{{ .Lastmod.Format $dateFormat }}</time>
+      </span>
+      {{ end }}
+      {{- if .Params.Categories }}
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="fa-solid fa-folder"></i>
+        </span>
+        <span class="post-meta-item-text">{{ i18n "post.in" }}</span>
+        {{ with .GetTerms "categories" }}
+        {{- range . }}
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="{{ .RelPermalink }}" itemprop="url" rel="index"> <span itemprop="name">{{ .LinkTitle }}</span></a>
+        </span>
+        {{ end }}
+        {{ end }}
+      {{ end }}
+    </div>
+    <div class="post-button">
+      <a class="btn min" href="{{ .RelPermalink }}">
+        {{ (i18n "post.readMore") }} &raquo;
+      </a>
+    </div>
+  </div>
+</div>
